@@ -4,8 +4,14 @@ cmake_minimum_required(VERSION 3.5)
 set(PICO_SDK_PATH ${CMAKE_CURRENT_LIST_DIR}/vendor/pico-sdk)
 set(PICO_BOARD pico_w)
 
+# Use pimoroni-pico in vendor
+set(PIMORONI_PICO_PATH ${CMAKE_CURRENT_LIST_DIR}/vendor/pimoroni-pico)
+
 # Pull in SDK (must be before project)
 include(pico_sdk_import.cmake)
+
+# Pull in pimoroni-pico (must be before project)
+include(pimoroni_pico_import.cmake)
 
 project(rave_toy C CXX ASM)
 set(CMAKE_C_STANDARD 11)
@@ -33,6 +39,7 @@ add_executable(rave_toy
         src/config.hpp
         src/lib/dhcpserver.hpp
         src/lib/dnsserver.hpp
+        src/util/http.hpp
 )
 target_include_directories(rave_toy PRIVATE
         .
